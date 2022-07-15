@@ -264,7 +264,7 @@ function animate(){
                         projectiles.splice(projectileIndex, 1)
                     }, 0)
                 } else {
-                    score +=25
+                    score +=15
                     scoreEL.innerHTML = score
                     console.log(score)
                     setTimeout(()=>{
