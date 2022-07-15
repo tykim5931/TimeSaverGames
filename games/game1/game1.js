@@ -152,22 +152,6 @@ class Particle {
     }
 }
 
-class BackgroundObject {
-    constructor({x, y}) {
-        this.position = {
-            x,
-            y
-        }
-        this.width = innerWidth
-        this.height = innerHeight
-        this.image = new Image()
-        this.image.src = "./assets/spacebackGround.png"
-    }
-    draw() {
-        c.drawImage(this.image, this.position.x, this.position.y,this.width, this.height)
-    }
-}
-
 const x = canvas.width/2
 const y = canvas.height/2
 
@@ -175,11 +159,9 @@ let player = new Player(x,y,10,'white')
 let projectiles = []
 let enemies = []
 let particles = []
-let backgroundObject = new BackgroundObject({x:0,y:0})
 
 
 function init(){
-    backgroundObject.draw()
     player = new Player(x,y,10,'white')
     projectiles = []
     enemies = []
