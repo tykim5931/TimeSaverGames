@@ -92,10 +92,11 @@ let platformImage = createImage("./img/platform.png")
 let platforms = [new Platform({ x:0, y:470, image:platformImage }),
     new Platform({ x:249, y:470, image:platformImage })]
 for(i=400; i<=totalLength+_width; i+=_width){
-    platforms.push(new Platform({ x:0+i, y:470, image:platformImage })),
-    platforms.push(new Platform({ x:350+i, y:450, image:platformImage })),
-    platforms.push(new Platform({ x:700+i, y:400, image:platformImage })),
-    platforms.push(new Platform({ x:1050+i, y:300, image:platformImage }))
+    platforms.push(new Platform({ x:0+i, y:innerHeight*(4.0/5.0), image:platformImage })),
+    platforms.push(new Platform({ x:350+i, y:innerHeight*(3.0/5.0), image:platformImage })),
+    platforms.push(new Platform({ x:700+i, y:innerHeight*(4.5/5.0), image:platformImage })),
+    platforms.push(new Platform({ x:1050+i, y:innerHeight*(3.0/5.0), image:platformImage }))
+    platforms.push(new Platform({ x:1550+i, y:innerHeight*(4.0/5.0), image:platformImage }))
 }
 let background =  createImage("./img/background.png")
 let genericObjects =[]
@@ -120,12 +121,13 @@ function init(){
     scrollOffset = 0
     platforms = [new Platform({ x:0, y:470, image:platformImage }),
                     new Platform({ x:240, y:470, image:platformImage })]
+    
     for(i=400; i<=totalLength+_width; i+=_width){
-        platforms.push(new Platform({ x:0+i, y:470, image:platformImage })),
-        platforms.push(new Platform({ x:350+i, y:450, image:platformImage })),
-        platforms.push(new Platform({ x:700+i, y:400, image:platformImage })),
-        platforms.push(new Platform({ x:1050+i, y:300, image:platformImage }))
-        platforms.push(new Platform({ x:1550+i, y:300, image:platformImage }))
+        platforms.push(new Platform({ x:0+i, y:innerHeight*(4.0/5.0), image:platformImage })),
+        platforms.push(new Platform({ x:350+i, y:innerHeight*(3.0/5.0), image:platformImage })),
+        platforms.push(new Platform({ x:700+i, y:innerHeight*(4.5/5.0), image:platformImage })),
+        platforms.push(new Platform({ x:1050+i, y:innerHeight*(3.0/5.0), image:platformImage }))
+        platforms.push(new Platform({ x:1550+i, y:innerHeight*(4.0/5.0), image:platformImage }))
     }
     genericObjects =[]
     for(i=0; i<=totalLength+_width; i+=_width){
