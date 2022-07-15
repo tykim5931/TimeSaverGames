@@ -1,0 +1,134 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    user-select: none;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: black;
+}
+
+.scoreBoard{
+    position: fixed;
+    color: rgb(255 255 255);
+    font-size: 0.875rem; 
+    line-height: 1.25rem; 
+    margin-left: 0.5rem;
+    margin-top: 0.25rem;
+    user-select: none;
+}
+
+.restartUi{
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.restartUi-1{
+    background-color: rgb(255, 255, 255);
+    max-width: 28rem;
+    width: 100%;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.bigScoreEl{
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.pointsText{
+    user-select: none;
+    font-size: 0.875rem; 
+    line-height: 1.25rem;
+    color: rgb(55 65 81);
+    margin-bottom: 1rem;
+}
+
+.startButton{
+    font-size: 0.875rem; 
+    line-height: 1.25rem;
+    width: 100%;
+    background-color: rgb(59 130 246);
+    border-color: rgb(255 255 255);
+    color: rgb(255 255 255);
+    padding-top: 0.75rem; 
+    padding-bottom: 0.75rem;
+    border-radius: 9999px;
+}
+
+.intro{
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #161616;
+    transition: 1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#imgspaceship{
+    height: 40vh;
+    object-fit: cover;
+}
+
+#countdown{
+    font-size: 50px;
+    color: #ffffff;
+    padding-left: 105px;
+}
+
+.splashAnimation{
+    position: relative;
+    display: inline-block;
+    bottom: -100px;
+    opacity: 0;
+}
+
+.splashAnimation.active{
+    bottom: 0;
+    opacity: 1;
+    transition: ease-in-out 0.5s;
+}
+
+.splashAnimation.fade{
+    bottom: 150px;
+    opacity: 0;
+    transition: ease-in-out 0.5s;
+
+}
+
+#countdown{
+    position: relative;
+    display: inline-block;
+    bottom: 20vh;
+    opacity: 0;
+}
+
+#countdown.active{
+    bottom: 20vh+20px;
+    opacity: 1;
+    transition: ease-in-out 0.5s;
+}
+
+#countdown.fade{
+    bottom: 20vh+150px;
+    opacity: 0;
+    transition: ease-in-out 0.5s;
+}
