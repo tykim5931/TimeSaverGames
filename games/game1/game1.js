@@ -229,10 +229,14 @@ function animate(){
         enemy.update()
 
         const dist = Math.hypot(player.x - enemy.x, player.y - enemy.y)
+        //game over
         if(dist - enemy.radius - player.radius < 1){
             cancelAnimationFrame(animationId)
             modalEl.style.display = 'flex'
             bigScoreEl.innerHTML = score
+            if(score>1000){
+                startBtn.innerHTML = 'Go to Stage 2'
+            }
         }
 
         projectiles.forEach((projectile, projectileIndex)=>{
@@ -296,6 +300,10 @@ window.addEventListener('click',(event)=>{
 spawnEnemies()
 
 startBtn.addEventListener('click', ()=>{
+    if(startBtn.innerHTML=='Go to Stage 2'){
+        console.log(startBtn.innerHTML)
+        document.location.href='http://192.249.18.156:443/junglegame'
+    }
     init()
     animate()
     modalEl.style.display = 'none'
