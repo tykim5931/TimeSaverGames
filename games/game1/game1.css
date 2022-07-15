@@ -68,6 +68,20 @@ body{
     border-radius: 9999px;
 }
 
+.developerButton{
+    bottom: 1rem; /* 16px */
+    right: 1rem; /* 16px */
+    background-color: rgb(81, 81, 81);
+    border-color: rgb(81, 81, 81);
+    color: rgb(255 255 255);
+    position: fixed;
+    padding-left: 1rem; /* 16px */
+    padding-right: 1rem; /* 16px */
+    padding-top: 0.75rem; /* 12px */
+    padding-bottom: 0.75rem; /* 12px */
+    border-radius: 9999px;
+}
+
 .intro{
     position: fixed;
     z-index: 1;

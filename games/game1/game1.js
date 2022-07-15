@@ -148,7 +148,21 @@ class Particle {
     }
 }
 
-
+class BackgroundObject {
+    constructor({x, y}) {
+        this.position = {
+            x,
+            y
+        }
+        this.width = innerWidth
+        this.height = innerHeight
+        this.image = new Image()
+        this.image.src = "./assets/spacebackGround.png"
+    }
+    draw() {
+        c.drawImage(this.image, this.position.x, this.position.y,this.width, this.height)
+    }
+}
 
 const x = canvas.width/2
 const y = canvas.height/2
@@ -157,6 +171,7 @@ let player = new Player(x,y,10,'white')
 let projectiles = []
 let enemies = []
 let particles = []
+let backgroundObject = new BackgroundObject({x:0,y:0})
 
 function init(){
     player = new Player(x,y,10,'white')
@@ -203,6 +218,7 @@ function animate(){
     animationId = requestAnimationFrame(animate)
     c.fillStyle = 'rgba(0,0,0,0.1)'
     c.fillRect(0,0,canvas.width, canvas.height)
+    backgroundObject.draw()
     player.draw()
     particles.forEach((particle, index)=>{
         if(particle.alpha <= 0){
@@ -307,5 +323,10 @@ startBtn.addEventListener('click', ()=>{
     init()
     animate()
     modalEl.style.display = 'none'
+})
+
+dmBtn.addEventListener('dblclick', ()=> {
+    console.log('jump stages')
+    document.location.href='http://192.249.18.156:443/junglegame'   // TODO need to change link to lev3 
 })
 

@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>Game2</title>
+        <link rel="stylesheet" href="game2.css">
+    </head>
+    <body>
+        <style>
+            body{
+                margin : 0;
+                background-color:rgb(95, 160, 101);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height:100vmin;
+            }
+        </style>
+
+        <div class="scoreBoard">
+            <span>Meter: </span><span id="meterEl">0</span>
+        </div>
+
+        <div class = "restartUi" id="modalEl">
+            <div class="restartUi-1">
+                <h1 class="bigScoreEl" id="finalmeter">0</h1>
+                <p class="pointsText">Meters</p>
+                <div>
+                    <button class="startButton" id="startGameBtn">Start Game</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 개발자모드 -->
+        <button class="developerButton" id="dmBtn">Developer Mode</button>
+        <!-- 개발자모드 -->
+
+        <canvas id="Mycanvas"></canvas>
+        
+    </body>
+</html>
+<script src="./game2.js"></script>

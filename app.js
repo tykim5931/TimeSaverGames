@@ -27,7 +27,7 @@ app.get("/spacegame", function(req, res){
 //load game 2
 app.use(express.static(__dirname+'/games/game2'))
 app.get("/junglegame", function(req, res){
-    res.sendFile(__dirname + '/games/game2/index.html')
+    res.sendFile(__dirname + '/games/game2/game2.html')
 });
 
 app.post("/welcome", function(req, res) {
