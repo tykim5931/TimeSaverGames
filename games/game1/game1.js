@@ -55,6 +55,10 @@ const bigScoreEl = document.querySelector('#bigScoreEl')
 const startBtn = document.querySelector('#startButton')
 const modalEl = document.querySelector('#modalEl')
 
+let background = new Image()
+background.src = "./assets/spacebackGround.png"
+
+
 class Player {
     constructor(x,y,radius,color){
         this.x = x
@@ -173,7 +177,9 @@ let enemies = []
 let particles = []
 let backgroundObject = new BackgroundObject({x:0,y:0})
 
+
 function init(){
+    backgroundObject.draw()
     player = new Player(x,y,10,'white')
     projectiles = []
     enemies = []
@@ -216,9 +222,11 @@ let animationId
 let score = 0
 function animate(){
     animationId = requestAnimationFrame(animate)
-    c.fillStyle = 'rgba(0,0,0,0.1)'
-    c.fillRect(0,0,canvas.width, canvas.height)
-    backgroundObject.draw()
+    c.globalAlpha = 0.3
+    c.drawImage(background,0,0,innerWidth, innerHeight)
+    c.globalAlpha = 1.0
+    // c.fillStyle = 'rgba(0,0,0,0.1)'
+    // c.fillRect(0,0,canvas.width, canvas.height)
     player.draw()
     particles.forEach((particle, index)=>{
         if(particle.alpha <= 0){
