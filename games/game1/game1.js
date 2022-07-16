@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
         console.log(splash1)
         console.log(splash2)
         setTimeout(() => {
-           splash1.classList.add('active') 
+           splash1.classList.add('active2') 
         });
         setTimeout(() => {
            splash2.classList.add('active') 
@@ -15,19 +15,23 @@ window.addEventListener('DOMContentLoaded', ()=>{
 
         setTimeout(() => {
             setTimeout(() => {
+                splash1.classList.remove('active2') 
+                splash1.classList.add('active1')
                 splash2.innerHTML=2
             }, );
         }, 1000);
 
         setTimeout(() => {
             setTimeout(() => {
+                splash1.classList.remove('active1') 
+                splash1.classList.add('active0')
                 splash2.innerHTML='\u2005\u200A'+'1'
              },);
         }, 2000);
 
         setTimeout(() => {
             setTimeout(() => {
-                splash1.classList.remove('active') 
+                splash1.classList.remove('active0') 
                 splash1.classList.add('fade')
             },);
             setTimeout(() => {

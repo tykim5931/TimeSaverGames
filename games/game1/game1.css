@@ -8,7 +8,6 @@
 }
 
 body{
-    font-family: 'Poppins', sans-serif;
     background-color: black;
 }
 
@@ -93,6 +92,7 @@ body{
     padding-left: 105px;
 }
 
+/* animation */
 .splashAnimation{
     position: relative;
     display: inline-block;
@@ -100,8 +100,18 @@ body{
     opacity: 0;
 }
 
-.splashAnimation.active{
+.splashAnimation.active2{
     bottom: 0;
+    opacity: 1;
+    transition: ease-in-out 0.5s;
+}
+.splashAnimation.active1{
+    bottom: 100px;
+    opacity: 1;
+    transition: ease-in-out 0.5s;
+}
+.splashAnimation.active0{
+    bottom: 200px;
     opacity: 1;
     transition: ease-in-out 0.5s;
 }
