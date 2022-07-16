@@ -6,7 +6,12 @@ window.addEventListener('DOMContentLoaded', ()=>{
     splash1.addEventListener('animationend',()=>{
         setTimeout(() => {
             intro.style.top = '-100vh'
-        }, 1000);
+        }, 1600);
+        setTimeout(() => {
+            init()
+            animate()
+            modalEl.style.display = 'none'
+        }, 1700);
     })
 })
 
@@ -157,8 +162,8 @@ function spawnEnemies(){
 
         const random = Math.random()+ 3
         const velocity = {
-            x: Math.cos(angle)* random,
-            y: Math.sin(angle)* random
+            x: Math.cos(angle)* random * (innerWidth+innerHeight) / 2000.0,
+            y: Math.sin(angle)* random * (innerWidth+innerHeight) / 2000.0
         }
 
         enemies.push(new Enemy(x,y,radius,color,velocity))

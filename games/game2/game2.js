@@ -6,7 +6,12 @@ window.addEventListener('DOMContentLoaded', ()=>{
     splash1.addEventListener('animationend',()=>{
         setTimeout(() => {
             intro.style.top = '-100vh'
-        },500);
+        },1600);
+        setTimeout(() => {
+            init()
+            animate()
+            modalEl.style.display = 'none'
+        }, 1700);
     })   
 })
 
