@@ -30,6 +30,47 @@ app.get("/junglegame", function(req, res){
     res.sendFile(__dirname + '/games/game2/game2.html')
 });
 
+//load userfile
+const defaultinfo = {
+    "sites": [
+    ],
+
+    "point": 0,
+
+    "skins": [
+    ]
+}
+app.use(express.static(__dirname+'/info'))
+app.post("/info", function(req, res){
+    let userid = req.body.userid;
+    let fs = require('fs')
+    if(fs.existsSync(`${__dirname}/info/${userid}_info.json`)){
+        res.sendFile(`${__dirname}/info/${userid}_info.json`)
+    }
+    else{
+        const fs = require('fs')
+        fs.writeFile(`${__dirname}/info/${userid}_info.json`,JSON.stringify(defaultinfo),function(err){
+            if (err === null) {
+                console.log('success');
+            } else {
+                console.log('fail');
+            }
+        });
+        res.sendFile(`${__dirname}/info/${userid}_info.json`)
+    }
+});
+
+// save userfile
+app.post("/infochange", function(req, res){
+    const userid = req.body.userid;
+    const info = req.body.data;
+    console.log(req.body.data)
+    const fs = require('fs')
+    fs.writeFile(`${__dirname}/info/${userid}_info.json`, JSON.stringify(info), err => {
+        if (err) console.log("Error writing file:", err);
+    });
+})
+
 app.post("/welcome", function(req, res) {
     const name = req.body.name;
     res.send("Welcome " + name);
@@ -38,3 +79,6 @@ app.post("/welcome", function(req, res) {
 app.listen(PORT, function() {
     console.log("server is ready at " + PORT);
 });
+
+
+// reset user's current time, point, isbroken every day
