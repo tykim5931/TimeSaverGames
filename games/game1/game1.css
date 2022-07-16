@@ -4,11 +4,11 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
     user-select: none;
-    overflow: hidden
 }
 
 body{
     background-color: black;
+    overflow: hidden;
 }
 
 .scoreBoard{
@@ -88,7 +88,7 @@ body{
     top: 0;
     width: 100%;
     height: 100vh;
-    background-color: #161616;
+    background-color: #151647;
     transition: 1s;
     display: flex;
     align-items: center;
@@ -96,62 +96,79 @@ body{
 }
 
 #imgspaceship{
+    opacity: 0;
     height: 40vh;
     object-fit: cover;
 }
 
-#countdown{
-    font-size: 50px;
-    color: #ffffff;
-    padding-left: 105px;
+#circle{
+    opacity: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    background: white;
 }
 
 /* animation */
-.splashAnimation{
-    position: relative;
-    display: inline-block;
-    bottom: -100px;
-    opacity: 0;
+
+.splashAnimation#imgspaceship{
+    animation: fly 6s ease-out;
+}
+@keyframes fly {
+    0%{
+        opacity: 1;
+        transform: translate(0, 50vh);
+    }
+    45%{
+        transform: translate(0, -10vh);
+    }
+    60%{
+        transform: translate(0, -25vh);
+    }
+    100%{
+        opacity: 1;
+        transform: translate(0, -100vh);
+    }
 }
 
-.splashAnimation.active2{
-    bottom: 0;
-    opacity: 1;
-    transition: ease-in-out 0.5s;
+.splashAnimation#circle{
+    animation: pop 8s ease-out;
 }
-.splashAnimation.active1{
-    bottom: 100px;
-    opacity: 1;
-    transition: ease-in-out 0.5s;
-}
-.splashAnimation.active0{
-    bottom: 200px;
-    opacity: 1;
-    transition: ease-in-out 0.5s;
-}
-
-.splashAnimation.fade{
-    bottom: 200px;
-    opacity: 0;
-    transition: ease-in-out 0.5s;
-
-}
-
-#countdown{
-    position: relative;
-    display: inline-block;
-    bottom: 20vh;
-    opacity: 0;
-}
-
-#countdown.active{
-    bottom: 20vh+20px;
-    opacity: 1;
-    transition: ease-in-out 0.5s;
-}
-
-#countdown.fade{
-    bottom: 20vh+200px;
-    opacity: 0;
-    transition: ease-in-out 0.5s;
+@keyframes pop {
+    0%{
+        opacity: 0;
+        transform: translate(10.75vh, 30vh) scale(1) translateX(-15px);
+    }
+    33.75%{
+        opacity: 0;
+        transform: translate(10.75vh, -20vh) scale(1) translateX(-15px);
+    }
+    40%{
+        opacity: 0.8;
+        transform: translate(10.75vh, -20vh) scale(1) translateX(-15px);
+    }
+    50%{
+        opacity: 1;
+        transform: translate(10.75vh, -20vh) scale(1.2) translateX(-15px);
+    }
+    60%{
+        opacity: 0.8;
+        transform: translate(10.75vh, -20vh) scale(.9) translateX(-15px);
+    }
+    70%{
+        opacity: 1;
+        transform: translate(10.75vh, -20vh) scale(1.1) translateX(-15px);
+    }
+    80%{
+        opacity: 0.8;
+        transform: translate(10.75vh, -20vh) scale(.9) translateX(-15px);
+    }
+    90%{
+        opacity: 1;
+        transform: translate(10.75vh, -20vh) scale(1) translateX(-15px);
+    }
+    100%{
+        opacity: 0;
+        transform: translate(10.75vh, -20vh) scale(1) translateX(-15px);
+    }
 }

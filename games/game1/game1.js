@@ -1,51 +1,13 @@
 let intro = document.querySelector('.intro')
-let splash1 = document.querySelector('.splashAnimation')
-let splash2 = document.querySelector('#countdown')
+let splash1 = document.querySelector('#imgspaceship')
+let splash2 = document.querySelector('#circle')
 
 window.addEventListener('DOMContentLoaded', ()=>{
-    setTimeout(()=>{
-        console.log(splash1)
-        console.log(splash2)
-        setTimeout(() => {
-           splash1.classList.add('active2') 
-        });
-        setTimeout(() => {
-           splash2.classList.add('active') 
-        });
-
-        setTimeout(() => {
-            setTimeout(() => {
-                splash1.classList.remove('active2') 
-                splash1.classList.add('active1')
-                splash2.innerHTML=2
-            }, );
-        }, 1000);
-
-        setTimeout(() => {
-            setTimeout(() => {
-                splash1.classList.remove('active1') 
-                splash1.classList.add('active0')
-                splash2.innerHTML='\u2005\u200A'+'1'
-             },);
-        }, 2000);
-
-        setTimeout(() => {
-            setTimeout(() => {
-                splash1.classList.remove('active0') 
-                splash1.classList.add('fade')
-            },);
-            setTimeout(() => {
-                splash2.innerHTML=0
-                splash2.classList.remove('active') 
-                splash2.classList.add('fade')
-            }, );
-        }, 3000);
-
+    splash1.addEventListener('animationend',()=>{
         setTimeout(() => {
             intro.style.top = '-100vh'
-        }, 3200);
+        }, 1000);
     })
-    
 })
 
 const canvas = document.querySelector('canvas');
