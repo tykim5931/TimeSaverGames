@@ -1,3 +1,15 @@
+let intro = document.querySelector('.intro')
+let splash1 = document.querySelector('#imgufo')
+let splash2 = document.querySelector('#circle')
+
+window.addEventListener('DOMContentLoaded', ()=>{
+    splash1.addEventListener('animationend',()=>{
+        setTimeout(() => {
+            intro.style.top = '-100vh'
+        },500);
+    })   
+})
+
 const canvas = document.getElementById('Mycanvas')
 const c = canvas.getContext('2d')
 
