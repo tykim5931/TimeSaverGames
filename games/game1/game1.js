@@ -59,6 +59,10 @@ const bigScoreEl = document.querySelector('#bigScoreEl')
 const startBtn = document.querySelector('#startButton')
 const modalEl = document.querySelector('#modalEl')
 
+let background = new Image()
+background.src = "./assets/spacebackGround.png"
+
+
 class Player {
     constructor(x,y,radius,color){
         this.x = x
@@ -152,8 +156,6 @@ class Particle {
     }
 }
 
-
-
 const x = canvas.width/2
 const y = canvas.height/2
 
@@ -161,6 +163,7 @@ let player = new Player(x,y,10,'white')
 let projectiles = []
 let enemies = []
 let particles = []
+
 
 function init(){
     player = new Player(x,y,10,'white')
@@ -205,8 +208,11 @@ let animationId
 let score = 0
 function animate(){
     animationId = requestAnimationFrame(animate)
-    c.fillStyle = 'rgba(0,0,0,0.1)'
-    c.fillRect(0,0,canvas.width, canvas.height)
+    c.globalAlpha = 0.3
+    c.drawImage(background,0,0,innerWidth, innerHeight)
+    c.globalAlpha = 1.0
+    // c.fillStyle = 'rgba(0,0,0,0.1)'
+    // c.fillRect(0,0,canvas.width, canvas.height)
     player.draw()
     particles.forEach((particle, index)=>{
         if(particle.alpha <= 0){
@@ -311,5 +317,10 @@ startBtn.addEventListener('click', ()=>{
     init()
     animate()
     modalEl.style.display = 'none'
+})
+
+dmBtn.addEventListener('dblclick', ()=> {
+    console.log('jump stages')
+    document.location.href='http://192.249.18.156:443/junglegame'   // TODO need to change link to lev3 
 })
 

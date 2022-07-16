@@ -13,6 +13,7 @@ const meterEl = document.getElementById('meterEl')
 const startGameBtn = document.getElementById('startGameBtn')
 const modalEl = document.getElementById('modalEl')
 const finalmeter = document.getElementById('finalmeter')
+const dmBtn = document.getElementById('dmBtn')
 
 class Player {
     constructor(){
@@ -189,10 +190,20 @@ function animate(){
         cancelAnimationFrame(animationID)
         finalmeter.innerHTML = scrollOffset
         modalEl.style.display = 'flex'
+    } else if(scrollOffset >= totalLength){ // win condition
+        cancelAnimationFrame(animationID)
+        finalmeter.innerHTML = scrollOffset
+        startGameBtn.innerHTML = 'Go to Stage 3'
+        modalEl.style.display = 'flex'
     }
 }
 
+
 startGameBtn.addEventListener('click', () => {
+    if(startGameBtn.innerHTML=='Go to Stage 3'){
+        console.log(startGameBtn.innerHTML)
+        document.location.href='http://192.249.18.156:443/junglegame'   // TODO need to change link to lev3 
+    }
     console.log("cicked")
     init()
     animate()
@@ -213,45 +224,7 @@ addEventListener('click', ()=> {
     player.velocity.y -= 20
 })
 
-window.addEventListener('keydown', ({keyCode})=> {
-    console.log('keydown')
-    switch (keyCode){
-        case 65:
-            console.log('left')
-            keys.left.pressed = true
-            break
-        case 83:
-            console.log('down')
-            break
-        case 68:
-            console.log('right')
-            keys.right.pressed = true
-            break
-        case 87:
-            console.log('up')
-            player.velocity.y -= 10
-            break
-    }
-})  
-
-
-window.addEventListener('keyup', ({keyCode})=> {
-    console.log('keyup')
-    switch (keyCode){
-        case 65:
-            console.log('left')
-            keys.left.pressed = false
-            break
-        case 83:
-            console.log('down')
-            break
-        case 68:
-            console.log('right')
-            keys.right.pressed = false
-            break
-        case 87:
-            console.log('up')
-            player.velocity.y -= 20
-            break
-    }
-})  
+dmBtn.addEventListener('dblclick', ()=> {
+    console.log('jump stages')
+    document.location.href='http://www.youtube.com'   // TODO need to change link to lev3 
+})
