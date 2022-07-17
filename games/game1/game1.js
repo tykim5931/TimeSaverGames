@@ -6,7 +6,12 @@ window.addEventListener('DOMContentLoaded', ()=>{
     splash1.addEventListener('animationend',()=>{
         setTimeout(() => {
             intro.style.top = '-100vh'
-        }, 1000);
+        }, 1600);
+        setTimeout(() => {
+            init()
+            animate()
+            modalEl.style.display = 'none'
+        }, 1700);
     })
 
     chrome.identity.getProfileUserInfo(function(userinfo) { // 게임시도함
@@ -102,13 +107,13 @@ class Enemy {
         this.radius = radius
         this.color = color
         this.velocity = velocity
+        this.index = Math.floor(Math.random()*54) + 1
+        this.image = new Image()
+        this.image.src = `./assets/enemies/${this.index}.png`
     }
 
     draw(){
-        c.beginPath()
-        c.arc(this.x, this.y, this.radius, 0, Math.PI*2, false)
-        c.fillStyle = this.color
-        c.fill()
+        c.drawImage(this.image, this.x-this.radius, this.y-this.radius, this.radius*2, this.radius*2);
     }
 
     update(){
@@ -170,7 +175,7 @@ function init(){
 
 function spawnEnemies(){
     setInterval(()=>{
-        const radius = Math.random() * (30-5) + 5
+        const radius = Math.random() * (30-10) + 10
 
         let x
         let y
@@ -183,17 +188,16 @@ function spawnEnemies(){
             x = Math.random() * canvas.width
         }
 
-        const color = `hsl(${Math.random()*360}, 50%, 50%)`
+        const color = `hsl(${Math.random()*360}, 70%, 70%)`
         const angle = Math.atan2(canvas.height/2-y, canvas.width/2-x)
 
         const random = Math.random()+ 3
         const velocity = {
-            x: Math.cos(angle)* random,
-            y: Math.sin(angle)* random
+            x: Math.cos(angle)* random * (innerWidth+innerHeight) / 2000.0,
+            y: Math.sin(angle)* random * (innerWidth+innerHeight) / 2000.0
         }
 
         enemies.push(new Enemy(x,y,radius,color,velocity))
-        console.log('go')
     }, 1000)
 }
 
@@ -216,7 +220,6 @@ function animate(){
     })
     projectiles.forEach((projectile, index)=>{
         projectile.update()
-
         if(
             projectile.x + projectile.radius < 0 ||
             projectile.x - projectile.radius > canvas.width ||
@@ -250,7 +253,7 @@ function animate(){
                     particles.push(
                         new Particle(
                             projectile.x, projectile.y, 
-                            Math.random()*2, enemy.color, 
+                            Math.random()*2, `hsl(${Math.random()*360}, 50%, 50%)`, 
                             {x: (Math.random()-0.5)*(Math.random()*6), 
                                 y: (Math.random()-0.5)*(Math.random()*6)}
                         )

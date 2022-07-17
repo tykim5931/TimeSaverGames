@@ -103,8 +103,8 @@ body{
 
 #circle{
     opacity: 0;
-    width: 30px;
-    height: 30px;
+    width: 4vh;
+    height: 4vh;
     border-radius: 30px;
     background: white;
 }
@@ -137,38 +137,38 @@ body{
 @keyframes pop {
     0%{
         opacity: 0;
-        transform: translate(10.75vh, 30vh) scale(1) translateX(-15px);
+        transform: translate(8.75vh, 30vh) scale(1);
     }
     33.75%{
         opacity: 0;
-        transform: translate(10.75vh, -20vh) scale(1) translateX(-15px);
+        transform: translate(8.75vh, -20vh) scale(1) ;
     }
     40%{
         opacity: 0.8;
-        transform: translate(10.75vh, -20vh) scale(1) translateX(-15px);
+        transform: translate(8.75vh, -20vh) scale(1);
     }
     50%{
         opacity: 1;
-        transform: translate(10.75vh, -20vh) scale(1.2) translateX(-15px);
+        transform: translate(8.75vh, -20vh) scale(1.2);
     }
     60%{
         opacity: 0.8;
-        transform: translate(10.75vh, -20vh) scale(.9) translateX(-15px);
+        transform: translate(8.75vh, -20vh) scale(.9) ;
     }
     70%{
         opacity: 1;
-        transform: translate(10.75vh, -20vh) scale(1.1) translateX(-15px);
+        transform: translate(8.75vh, -20vh) scale(1.1);
     }
     80%{
         opacity: 0.8;
-        transform: translate(10.75vh, -20vh) scale(.9) translateX(-15px);
+        transform: translate(8.75vh, -20vh) scale(.9) ;
     }
     90%{
         opacity: 1;
-        transform: translate(10.75vh, -20vh) scale(1) translateX(-15px);
+        transform: translate(8.75vh, -20vh) scale(1) ;
     }
     100%{
         opacity: 0;
-        transform: translate(10.75vh, -20vh) scale(1) translateX(-15px);
+        transform: translate(8.75vh, -20vh) scale(1) ;
     }
 }
