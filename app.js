@@ -42,6 +42,7 @@ const defaultinfo = {
 }
 app.use(express.static(__dirname+'/info'))
 app.post("/info", function(req, res){
+    console.log("info")
     let userid = req.body.userid;
     let fs = require('fs')
     if(fs.existsSync(`${__dirname}/info/${userid}_info.json`)){
@@ -64,6 +65,7 @@ app.post("/info", function(req, res){
 app.post("/infochange", function(req, res){
     const userid = req.body.userid;
     const info = req.body.data;
+    console.log("infochange")
     console.log(req.body.data)
     const fs = require('fs')
     fs.writeFile(`${__dirname}/info/${userid}_info.json`, JSON.stringify(info), err => {

@@ -8,6 +8,37 @@ window.addEventListener('DOMContentLoaded', ()=>{
             intro.style.top = '-100vh'
         }, 1000);
     })
+
+    chrome.identity.getProfileUserInfo(function(userinfo) { // 게임시도함
+        const userid = userinfo.id
+        let jsonObj = {"userid": userid}
+        fetch("http://192.249.18.156:443/info",{
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(jsonObj)
+        }).then(function (response){
+            return response.json();
+        })  
+        .then(function (jsondata){ 
+            let userInfo = jsondata
+            let hostnamelist = userInfo.sites.map(x.hostname)
+            let index = hostnamelist.indexOf(request.hostname)
+            userInfo.sites[index].isbroken = 2  // tried!
+            jsonObj = {"userid":userid, "data": userInfo}
+            fetch("http://192.249.18.156:443/infochange", {
+            method: 'POST',
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(jsonObj),
+        }).then(res=>res.json()).then(console.log())
+        })
+    })
+
 })
 
 const canvas = document.querySelector('canvas');
