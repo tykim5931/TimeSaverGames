@@ -26,6 +26,7 @@ const scoreEL = document.querySelector('#scoreEL')
 const bigScoreEl = document.querySelector('#bigScoreEl')
 const startBtn = document.querySelector('#startButton')
 const modalEl = document.querySelector('#modalEl')
+const expmsg = document.querySelector('#explain')
 
 let background = new Image()
 background.src = "./assets/spacebackGround.png"
@@ -208,9 +209,11 @@ function animate(){
         //game over
         if(dist - enemy.radius - player.radius < 1){
             cancelAnimationFrame(animationId)
+            expmsg.innerHTML = '외계생명체에게 당했습니다! 공부하러 돌아가세요!'
             modalEl.style.display = 'flex'
             bigScoreEl.innerHTML = score
             if(score>1000){
+                expmsg.innerHTML = "1단계 통과!"
                 startBtn.innerHTML = 'Go to Stage 2'
             }
         }
