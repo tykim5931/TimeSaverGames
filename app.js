@@ -84,3 +84,36 @@ app.listen(PORT, function() {
 
 
 // reset user's current time, point, isbroken every day
+const schedule = require('node-schedule');
+const job = schedule.scheduleJob('* * 24 * * *', function(){
+    resetInfo()
+});
+
+function resetInfo(){
+    const infoFolder = `${__dirname}/info`
+    let fs = require('fs')
+    fs.readdir(infoFolder, function(err, filelist){
+        if (err) throw err;
+        filelist.forEach( file => {
+            console.log(`${infoFolder}/${file}`)
+            let rawdata = fs.readFileSync(`${infoFolder}/${file}`)
+            let userinfo = JSON.parse(rawdata)
+            userinfo.sites.forEach( (site, index) => {
+                if(site.isbroken == 0){
+                    userinfo.sites[index].point += 1
+                }
+                else{
+                    userinfo.sites[index].point = 0
+                }
+                userinfo.sites[index].isbroken = 0  // reset is broken
+                userinfo.sites[index].currenttime = 0 // reset time
+            } )
+
+            const fs1 = require('fs')
+            fs1.writeFile(`${infoFolder}/${file}`, JSON.stringify(userinfo), err => {
+                if (err) console.log("Error writing file:", err);
+            });
+        })
+
+    })
+}

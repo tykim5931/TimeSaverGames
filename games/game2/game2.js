@@ -2,26 +2,26 @@ let intro = document.querySelector('.intro')
 let splash1 = document.querySelector('#imgufo')
 let splash2 = document.querySelector('#circle')
 
-// window.addEventListener('DOMContentLoaded', ()=>{
-//     splash1.addEventListener('animationend',()=>{
-//         setTimeout(() => {
-//             intro.style.top = '-100vh'
-//         },1600);
-//         setTimeout(() => {
-//             init()
-//             animate()
-//             modalEl.style.display = 'none'
-//         }, 1700);
-//     })   
-// })
+window.addEventListener('DOMContentLoaded', ()=>{
+    splash1.addEventListener('animationend',()=>{
+        setTimeout(() => {
+            intro.style.top = '-100vh'
+        },1600);
+        setTimeout(() => {
+            init()
+            animate()
+            modalEl.style.display = 'none'
+        }, 1700);
+    })   
+})
 
 //위에 주석 풀면 삭제하기
-window.addEventListener('DOMContentLoaded', ()=>{
-    setTimeout(() => {
-        intro.style.top = '-100vh'
-    },0);
+// window.addEventListener('DOMContentLoaded', ()=>{
+//     setTimeout(() => {
+//         intro.style.top = '-100vh'
+//     },0);
     
-})
+// })
 
 const canvas = document.getElementById('Mycanvas')
 const c = canvas.getContext('2d')
@@ -31,7 +31,7 @@ const _height = innerHeight-1
 canvas.width = _width
 canvas.height = _height
 
-const gravity = 1.5
+const gravity = 1.25
 const vel = 5
 const totalLength = 10000;
 const meterEl = document.getElementById('meterEl')
@@ -182,9 +182,9 @@ function init(){
     player = new Player()
 
     // 초기발판
-    platforms = [new Platform({ x:0, y:_height/2.0+10, image:platformImage }),
-        new Platform({ x:249, y:_height/2.0+10, image:platformImage }),
-        new Platform({ x:499, y:_height/2.0+10, image:platformImage })]
+    platforms = [new Platform({ x:0, y:_height*(2.0/3.0), image:platformImage }),
+        new Platform({ x:249, y:_height*(2.0/3.0), image:platformImage }),
+        new Platform({ x:499, y:_height*(2.0/3.0), image:platformImage })]
     
     // 발판
     for(let i=800; i<=totalLength+_width; i+=_width){
@@ -200,7 +200,7 @@ function init(){
         }
         console.log(i)
     }
-
+    platforms.push(new Platform({ x:10000+375, y:_height*(2.0/3.0), image:platformImage }))
     // Enemy
     enemies = []
     for(let i=_width+600; i<=totalLength*2; i+=_width){

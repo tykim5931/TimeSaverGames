@@ -1,1 +1,1 @@
-{"sites":[{"hostname":"www.youtube.com","blocktime":600000,"currenttime":600000,"isbroken":0},{"hostname":"www.instagram.com","blocktime":60000,"currenttime":60000,"isbroken":2}],"point":0,"skins":[]}
+{"sites":[{"hostname":"www.youtube.com","blocktime":10800000,"currenttime":0,"isbroken":0,"point":15}],"point":0,"skins":[]}
