@@ -105,7 +105,7 @@
 }
 
 /* animation */
-.splashAnimation#imgufo{
+/* .splashAnimation#imgufo{
     z-index: 2;
     animation: fly 6s ease-out;
 }
@@ -214,4 +214,4 @@
         opacity: 0;
         transform: translate(-40vw, -25vh) translateX(18vh);
     }
-}
+} */
