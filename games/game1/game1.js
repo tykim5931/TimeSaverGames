@@ -16,6 +16,18 @@ window.addEventListener('DOMContentLoaded', ()=>{
 
 })
 
+var audio = document.querySelector('audio');
+if (audio) {
+    window.addEventListener('keydown', function (event) {
+      var key = event.which || event.keyCode;
+      if (key === 32) { // spacebar
+        // eat the spacebar, so it does not scroll the page
+        event.preventDefault();
+        audio.paused ? audio.play() : audio.pause();
+      }
+    });
+  }
+
 const canvas = document.querySelector('canvas');
 const c = canvas.getContext('2d');
 
@@ -135,6 +147,7 @@ let particles = []
 
 
 function init(){
+    audio.play()
     player = new Player(x,y,10,'white')
     projectiles = []
     enemies = []
@@ -213,6 +226,7 @@ function animate(){
             modalEl.style.display = 'flex'
             bigScoreEl.innerHTML = score
             if(score>1000){
+                audio.pause()
                 expmsg.innerHTML = "1단계 통과!"
                 startBtn.innerHTML = 'Go to Stage 2'
             }

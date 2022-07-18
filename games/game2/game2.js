@@ -177,6 +177,19 @@ let emax = _height*(7.0/8.0)
 
 let currLength
 
+var audio = document.getElementById("audio_playo24");
+
+if (audio) {
+  window.addEventListener('keydown', function (event) {
+    var key = event.which || event.keyCode;
+    if (key === 32) { // spacebar
+      // eat the spacebar, so it does not scroll the page
+      event.preventDefault();
+      audio.paused ? audio.play() : audio.pause();
+    }
+  });
+}
+
 function init(){
     //================= draw platform ============================
     player = new Player()
@@ -195,10 +208,8 @@ function init(){
             let ypos = Math.floor(Math.random() * (ymax-ymin))+ymin
             platforms.push(new Platform({ x:i+tot+gap, y:ypos, image:platformImage }))
             tot += 250+gap
-            console.log(tot)
             cnt += 1
         }
-        console.log(i)
     }
     platforms.push(new Platform({ x:10000+375, y:_height*(2.0/3.0), image:platformImage }))
     // Enemy
@@ -224,6 +235,8 @@ function init(){
     scrollOffset = 0
     currLength = _width
     meterEl.innerHTML = scrollOffset
+    
+    audio.play()
 }
 
 
@@ -297,80 +310,19 @@ function animate(){
         expmsg.innerHTML = "새에게 잡혀 죽었습니다! 공부하러 돌아가세요!"
         dead = true
     } else if(scrollOffset >= totalLength){ 
-        expmsg.innerHTML = "완주!"
+        audio.pause()
+        expmsg.innerHTML = "2단계 통과!"
+        setTimeout(() => {console.log("세 번째 메시지")}, 1000);
         // win condition
 
         // 헬기 날아와서 대기
         // 헬기에 공이 부딪히면 go stage 3 창 띄우기
-        // cancelAnimationFrame(animationID)
-        // finalmeter.innerHTML = scrollOffset
-        // startGameBtn.innerHTML = 'Go to Stage 3'
-        // modalEl.style.display = 'flex'
+        cancelAnimationFrame(animationID)
+        finalmeter.innerHTML = scrollOffset
+        startGameBtn.innerHTML = 'Go to Stage 3'
+        modalEl.style.display = 'flex'
     }
     if(dead){  
-
-        //********** 이렇게 하거나*/
-        // c.clearRect(0,0,canvas.width, canvas.height)
-        // // clearArc(c, player.position.x, player.position.y, player.radius)
-
-        // genericObjects.forEach(genericObject =>{
-        //     genericObject.draw()
-        // })
-
-        // player.color = "red"
-        // player.draw()
-        // clearArc(c, player.position.x, player.position.y, player.radius)
-        // meterEl.innerHTML = scrollOffset
-
-        // platforms.forEach(platform => {
-        //     platform.draw()
-        // })
-
-        // enemies.forEach(enemy => {
-        //     enemy.draw()
-        // })
-
-        //********** 혹은 이렇게 하기*/
-        // let particles = []
-        // for(let i=0; i< player.radius *2; i++){
-        //     particles.push(
-        //         new Particle(
-        //             player.position.x, player.position.y, 
-        //             Math.random()*2, "white", 
-        //             {x: (Math.random()-0.5)*(Math.random()*6), 
-        //                 y: (Math.random()-0.5)*(Math.random()*6)}
-        //         )
-        //     )
-        // }   
-
-        // while(particles.length !== 0){
-        //     c.clearRect(0,0,canvas.width, canvas.height)
-
-
-        //     clearArc(c, player.position.x, player.position.y, player.radius)
-
-        //     genericObjects.forEach(genericObject =>{
-        //         genericObject.draw()
-        //     })
-        //     player.update()
-        //     meterEl.innerHTML = scrollOffset
-
-        //     platforms.forEach(platform => {
-        //         platform.draw()
-        //     })
-
-        //     enemies.forEach(enemy => {
-        //         enemy.draw()
-        //     })
-        //     particles.forEach((particle, index)=>{
-        //         if(particle.alpha <= 0){
-        //             particles.splice(index, 1)
-        //         } else{
-        //             particle.update()
-        //         }
-        //     })
-        // }
-        
         cancelAnimationFrame(animationID)
         finalmeter.innerHTML = scrollOffset
         modalEl.style.display = 'flex'
@@ -380,8 +332,7 @@ function animate(){
 
 startGameBtn.addEventListener('click', () => {
     if(startGameBtn.innerHTML=='Go to Stage 3'){
-        console.log(startGameBtn.innerHTML)
-        document.location.href='http://192.249.18.156:443/junglegame'   // TODO need to change link to lev3 
+        document.location.href='http://192.249.18.156:443/homecoming'   // TODO need to change link to lev3 
     }
     init()
     animate()
@@ -403,6 +354,5 @@ addEventListener('click', ()=> {
 
 dmBtn.addEventListener('dblclick', ()=> {
     scrollOffset = totalLength
-    // console.log('jump stages')
     // document.location.href='http://www.youtube.com'   // TODO need to change link to lev3 
 })

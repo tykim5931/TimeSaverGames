@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="game1.css">
     </head>
     <body>
+
         <div class="intro">
             <div class="splashes">
                 <img class="splashAnimation" id="imgspaceship" src="assets/spaceship.png">
@@ -39,8 +40,13 @@
             <!-- 개발자모드 -->
             <button class="developerButton" id="dmBtn">Developer Mode</button>
             <!-- 개발자모드 -->
-
-            <canvas></canvas>
+            
+            <canvas>
+                <iframe src="./assets/silence.mp3" allow="autoplay" id="audio" style="display:none"></iframe> 
+                <audio autoplay loop id="audio_playo24" type=“hidden” controls>
+                    <source src="./assets/HeatleyBros - HeatleyBros VI - 8 Bit Go.mp3" type="audio/mp3" />
+                </audio>
+            </canvas>
         </header>       
     </body>
 </html>

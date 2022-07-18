@@ -172,3 +172,10 @@ body{
         transform: translate(8.75vh, -20vh) scale(1) ;
     }
 }
+
+audio{
+    width: 0px;
+    height: 0px;
+    margin: 0px;
+    padding: 0px;
+}

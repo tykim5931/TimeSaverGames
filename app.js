@@ -18,6 +18,12 @@ app.get("/welcome/:name", function(req, res){
     res.send("Welcome to my web server " + name);
 });
 
+//load image
+// app.use(express.static(__dirname+'/screensaver'))
+// app.get("/spacegame", function(req, res){
+//     res.sendFile(__dirname + '/games/game1/game1.html')
+// });
+
 //load game 1
 app.use(express.static(__dirname+'/games/game1'))
 app.get("/spacegame", function(req, res){
@@ -28,6 +34,12 @@ app.get("/spacegame", function(req, res){
 app.use(express.static(__dirname+'/games/game2'))
 app.get("/junglegame", function(req, res){
     res.sendFile(__dirname + '/games/game2/game2.html')
+});
+
+//load game 3
+app.use(express.static(__dirname+'/games/game3'))
+app.get("/homecoming", function(req, res){
+    res.sendFile(__dirname + '/games/game3/index.html')
 });
 
 //load userfile
