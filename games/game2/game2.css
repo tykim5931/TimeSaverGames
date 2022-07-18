@@ -1,3 +1,7 @@
+*{
+    user-select: none;
+}
+
 .scoreBoard{
     position: fixed;
     color: rgb(255 255 255);
@@ -5,7 +9,6 @@
     line-height: 1.25rem;
     top: 0.5rem;
     left: 0.5rem;
-    user-select: none;
 }
 
 .restartUi{
