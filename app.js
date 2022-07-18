@@ -25,8 +25,9 @@ app.get("/welcome/:name", function(req, res){
 // });
 
 //load game 1
-app.use(express.static(__dirname+'/games/game1'))
 app.get("/spacegame", function(req, res){
+    app.use(express.static(__dirname+'/games/game1'))
+    console.log(req.query.id)
     res.sendFile(__dirname + '/games/game1/game1.html')
 });
 
@@ -47,10 +48,12 @@ const defaultinfo = {
     "sites": [
     ],
 
-    "point": 0,
-
-    "skins": [
-    ]
+    "skin": 0,
+    
+    "gaming":{
+        "hostname":"dummy",
+        "startat":0
+    }
 }
 app.use(express.static(__dirname+'/info'))
 app.post("/info", function(req, res){
@@ -97,6 +100,7 @@ app.listen(PORT, function() {
 
 // reset user's current time, point, isbroken every day
 const schedule = require('node-schedule');
+const { dirname } = require('path');
 const job = schedule.scheduleJob('* * 24 * * *', function(){
     resetInfo()
 });
