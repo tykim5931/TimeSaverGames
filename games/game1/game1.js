@@ -1,3 +1,39 @@
+// ==== initial calls ====
+// ==== get USER and HOSTNAME and TIME INFO from url =========
+const currURL = document.URL
+
+function getParameterByName(name, url) {
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+
+const USERID = getParameterByName('id',currURL)
+const HOSTNAME = getParameterByName('hostname',currURL)
+const TIME = parseInt(getParameterByName('time', currURL))
+//=================================================
+
+//====================timer========================
+const startTime = Date.now()
+let currTime = Date.now()
+function timeout(){
+    currTime = Date.now()
+    let diff = currTime - startTime
+    if(TIME - diff <= 0){
+        return true
+    }
+    return false
+}
+// ================================================
+
+
+
+
+// ================ main =========================
 let intro = document.querySelector('.intro')
 let splash1 = document.querySelector('#imgspaceship')
 let splash2 = document.querySelector('#circle')
@@ -26,7 +62,7 @@ if (audio) {
         audio.paused ? audio.play() : audio.pause();
       }
     });
-  }
+}
 
 const canvas = document.querySelector('canvas');
 const c = canvas.getContext('2d');
@@ -219,6 +255,7 @@ function animate(){
         enemy.update()
 
         const dist = Math.hypot(player.x - enemy.x, player.y - enemy.y)
+        
         //game over
         if(dist - enemy.radius - player.radius < 1){
             cancelAnimationFrame(animationId)
@@ -269,6 +306,11 @@ function animate(){
             }
         })
     })
+
+    if(timeout()){
+        alert("제한시간 5분이 초과되었습니다. 게임이 종료됩니다. 내일 다시 시도하세요!")
+        document.location.href=`http://${HOSTNAME}`
+    }
 }
 
 window.addEventListener('click',(event)=>{
@@ -292,10 +334,11 @@ window.addEventListener('click',(event)=>{
 
 spawnEnemies()
 
+
 startBtn.addEventListener('click', ()=>{
     if(startBtn.innerHTML=='Go to Stage 2'){
         console.log(startBtn.innerHTML)
-        document.location.href='http://192.249.18.156:443/junglegame'
+        document.location.href=`http://192.249.18.156:443/junglegame?id=${USERID}&hostname=${HOSTNAME}&time=${TIME-(Date.now()-startTime)}`
     }
     init()
     animate()
@@ -304,5 +347,8 @@ startBtn.addEventListener('click', ()=>{
 
 dmBtn.addEventListener('dblclick', ()=> {
     console.log('jump stages')
-    document.location.href='http://192.249.18.156:443/junglegame'   // TODO need to change link to lev3 
+    // console.log(getParameterByName('id',currURL))
+    // console.log(getParameterByName('hostname',currURL))
+    // console.log(getParameterByName('time', currURL))
+    document.location.href=`http://192.249.18.156:443/junglegame?id=${USERID}&hostname=${HOSTNAME}&time=${TIME-(Date.now()-startTime)}`
 })

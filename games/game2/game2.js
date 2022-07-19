@@ -15,13 +15,37 @@ window.addEventListener('DOMContentLoaded', ()=>{
     })   
 })
 
-//위에 주석 풀면 삭제하기
-// window.addEventListener('DOMContentLoaded', ()=>{
-//     setTimeout(() => {
-//         intro.style.top = '-100vh'
-//     },0);
-    
-// })
+// get USER and HOSTNAME and TIME INFO from url
+const currURL = document.URL
+
+function getParameterByName(name, url) {
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+
+const USERID = getParameterByName('id',currURL)
+const HOSTNAME = getParameterByName('hostname',currURL)
+const TIME = parseInt(getParameterByName('time', currURL))
+//=================================================
+
+
+//====================timer========================
+const startTime = Date.now()
+let currTime = Date.now()
+function timeout(){
+    currTime = Date.now()
+    let diff = currTime - startTime
+    if(TIME - diff <= 0){
+        return true
+    }
+    return false
+}
+// ================================================
 
 const canvas = document.getElementById('Mycanvas')
 const c = canvas.getContext('2d')
@@ -293,6 +317,11 @@ function animate(){
     })
 
     // end condition
+    // timeout
+    if(timeout()){
+        alert("제한시간 5분이 초과되었습니다. 게임이 종료됩니다. 내일 다시 시도하세요!")
+        document.location.href=`http://${HOSTNAME}`
+    }
     // enemy collision detection
     let dead = false;
     enemies.forEach(enemy =>{
@@ -332,7 +361,7 @@ function animate(){
 
 startGameBtn.addEventListener('click', () => {
     if(startGameBtn.innerHTML=='Go to Stage 3'){
-        document.location.href='http://192.249.18.156:443/homecoming'   // TODO need to change link to lev3 
+        document.location.href=`http://192.249.18.156:443/homecoming?id=${USERID}&hostname=${HOSTNAME}&time=${TIME-(Date.now()-startTime)}`
     }
     init()
     animate()
@@ -353,6 +382,5 @@ addEventListener('click', ()=> {
 })
 
 dmBtn.addEventListener('dblclick', ()=> {
-    scrollOffset = totalLength
-    // document.location.href='http://www.youtube.com'   // TODO need to change link to lev3 
+    document.location.href=`http://192.249.18.156:443/homecoming?id=${USERID}&hostname=${HOSTNAME}&time=${TIME-(Date.now()-startTime)}`
 })
